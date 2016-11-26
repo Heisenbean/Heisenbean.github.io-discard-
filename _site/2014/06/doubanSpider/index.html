@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>手把手教你爬取豆瓣相册</title>
+  <meta name="description" content="Python版本:2.7开发工具:Pycharm Community for Mac">
+  <meta name="author" content="Wei Wang">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="手把手教你爬取豆瓣相册">
+  <meta name="twitter:description" content="Python版本:2.7开发工具:Pycharm Community for Mac">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="手把手教你爬取豆瓣相册">
+  <meta property="og:description" content="Python版本:2.7开发工具:Pycharm Community for Mac">
+  
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://heisenbean.me/2014/06/doubanSpider/">
+  <link rel="alternate" type="application/rss+xml" title="Kick Your Ass" href="http://heisenbean.me/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+  
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/#blog" title="前往 Kick Your Ass 的主页" class="blog-button"><img src="/assets/images/avatar.jpg" width="80" alt="Kick Your Ass logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for Kick Your Ass" class="blog-button">Kick Your Ass</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">专业贴膜师,iOS/MacOS开发者,业余Python</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">是一个高尚的人，一个纯粹的人，一个有道德的人，一个坚决不脱离低级趣味的人。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        <p class="panel-cover__description"><a href="https://github.com/onevcat/vno-jekyll" target="_blank"></a></p>
+        
+        
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="Visit blog" class="blog-button">Blog</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+          
+          <div><nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  
+  <!-- Weibo -->
+  <li class="navigation__item">
+    <a href="http://weibo.com/botheast" title="@botheast 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+  
+
+  
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/heisenbean" title="@heisenbean 的 Github" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+  
+  
+  
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="http://twitter.com/hedongbin" title="@hedongbin" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+
+  
+
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:heisenbean.me@gmail.com" title="Contact me">
+      <i class='social fa fa-envelope'></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+  
+
+  </ul>
+</nav>
+</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-disabled"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2014-06-16 11:29:08 +0800" itemprop="datePublished" class="post-meta__date date">2014-06-16</time> &#8226; <span class="post-meta__tags tags"></span>
+    </div>
+    <h1 class="post-title">手把手教你爬取豆瓣相册</h1>
+  </header>
+
+  <section class="post">
+    <p>Python版本:<a href="https://www.python.org/downloads/">2.7</a><br />
+开发工具:<a href="https://www.jetbrains.com/pycharm/download/">Pycharm Community for Mac</a></p>
+
+<blockquote>
+  <p>我从简单到复杂,从用Python自带库到用到三方库来慢慢讲解怎么写这个爬虫.<br />
+最好有其他语言基础,有正则基础.</p>
+</blockquote>
+
+<p>最终目标:<br />
+ ✅ 动态加载网页爬取图片 <br />
+ ✅ 翻页处理<br />
+ ✅ 异常处理</p>
+
+<p>###<a name="markdown-通过本地HTML网页爬取图片"></a>通过本地HTML网页爬取图片</p>
+
+<p>####1. 分析静态网页源码</p>
+<ul>
+  <li>Pycharm新建项目.</li>
+  <li>
+    <p>随便找一个豆瓣相册地址<code>https://www.douban.com/photos/album/102879847/</code><br />
+把网页源代码复制一下,在项目路径下vim一个新文件后缀名为<code>.txt</code>,<code>html</code>都可以的,然后把复制的网页源码粘贴进去,这里我的源文件为<code>source.html</code></p>
+  </li>
+  <li>
+    <p>分析源码可看到相册里图片的url都在<code>&lt;div class="photolst clearfix"&gt;</code>和<code>&lt;div id="link-report"</code>之间,先不要管这两个东西是什么,只要能找到这个规律就行了.</p>
+  </li>
+  <li>那我们要做的就是通过代码拿到所有的图片url,然后下载到电脑上.</li>
+</ul>
+
+<p>####2. 读取源码,获取图片url</p>
+
+<ul>
+  <li>
+    <p>通过下面几句代码就能读取到源代码了.</p>
+
+    <pre><code>  # -*- coding: utf-8 -*-
+  file = open('source.html','r')
+  html = file.read()
+  file.close()
+  print html   &gt; `	# -*- coding: utf-8 -*-`由于编码问题,要加上这句声明,不然代码中出现中文会报错.
+</code></pre>
+  </li>
+  <li>
+    <p>下面将要用到正则表达式的一些知识来获取我们想要的内容.上面提到过所有图片的url都在<code>&lt;div class="photolst clearfix"&gt;</code>和<code>&lt;div id="link-report"</code>之间,所以我们通过正则可以这样拿到图片url.</p>
+
+    <pre><code>  # -*- coding: utf-8 -*-
+  # 引入正则库
+  import re 
+  file = open('source.html','r')
+  html = file.read()
+  file.close()
+  # 截取想要的部分
+  images = re.findall('"photolst clearfix"&gt;(.*?)&lt;div id="link-report',html,re.S)[0]
+  print images
+</code></pre>
+
+    <blockquote>
+      <p><code>.*?</code>就是正则里的任意匹配,比如<code>abcdefg</code>你想要<code>a</code>和<code>g</code>之间的字符,那么就是<code>'a(.*?)g'</code></p>
+    </blockquote>
+
+    <p>print结果中的其中一条数据:</p>
+
+    <pre><code>     &lt;div class="photo_wrap"&gt;
+          &lt;a href="https://www.douban.com/photos/photo/2230900788/" class="photolst_photo" title=""&gt;
+          &lt;img src="https://img3.doubanio.com/view/photo/thumb/public/p1972176302.jpg" /&gt;
+          &lt;/a&gt;&lt;br/&gt;
+          &lt;div class="pl"&gt;&lt;/div&gt;
+          &lt;div style="color:#999"&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+</code></pre>
+
+    <p>通过打印发现此时拿到并不是纯粹的url,而我们想要的只是<code>img src</code>标签后面的url.<br />
+那么还可以继续利用正则匹配拿到,思路和上面一样.</p>
+
+    <pre><code>  # -*- coding: utf-8 -*-
+  # 引入正则库
+  import re 
+	
+  file = open('source.html','r')
+  html = file.read()
+  file.close()
+  # 截取想要的部分
+  images = re.findall('"photolst clearfix"&gt;(.*?)&lt;div id="link-report',html,re.S)[0]
+  # 截取url
+  pic_url = re.findall('img src="(.*?)" /',images)
+  print pic_url
+</code></pre>
+  </li>
+</ul>
+
+<p>####3. 通过图片url下载图片</p>
+
+<ul>
+  <li>
+    <p>现在已经拿到所有图片的url,并且已经在一个数组里了,那剩下的就是遍历这个数组,把图片一个一个下载下来.</p>
+
+    <pre><code>  # -*- coding: utf-8 -*-
+  # 引入正则库
+  import re 
+  # 网络请求库
+  import requests
+	
+  file = open('source.html','r')
+  html = file.read()
+  file.close()
+	
+  images = re.findall('"photolst clearfix"&gt;(.*?)&lt;div id="link-report',html,re.S)[0]
+  pic_url = re.findall('img src="(.*?)" /',images)
+	
+  i = 0
+  for url in pic_url:
+      print '正在下载第' + str(i) + '张图片' 
+      pic = requests.get(url)
+      fp = open(str(i) + '.jpg','wb')
+      fp.write(pic.content)
+      fp.close()
+      i += 1
+</code></pre>
+  </li>
+  <li>
+    <p>但是现在下载的图片都是存放到当前文件夹了,期望的效果是自动创建一个文件夹并把图片下载到里面,也很好实现.</p>
+
+    <pre><code>  # -*- coding: utf-8 -*-
+  import re
+  import os
+  import requests
+  file = open('source.html','r')
+  html = file.read()
+  file.close()
+	
+  images = re.findall('"photolst clearfix"&gt;(.*?)&lt;div id="link-report',html,re.S)[0]
+  pic_url = re.findall('img src="(.*?)" /',images)
+	
+  i = 0
+  # 如果不存在此文件夹才创建
+  if not os.path.exists('pic'):
+      os.makedirs('pic')
+      for url in pic_url:
+          print '正在下载第' + str(i) + '张图片'
+          pic = requests.get(url)
+          fp = open(os.getcwd() + '/pic/' + str(i) + '.jpg', 'wb')
+          # fp = open(str(i) + '.jpg','wb')
+          fp.write(pic.content)
+          fp.close()
+          i += 1  
+  else:
+      print('您已下载过了') &gt; `os.getcwd`是获取当前路径,以及`makedirs`都是`os`库里的方法,要记得引用os库.
+</code></pre>
+  </li>
+</ul>
+
+<p>至此,从静态html源代码爬取图片地址并下载算是已经做完了,接下来就直接通过网址来爬取图片.
+###通过网址动态爬取图片
+####1. 解析相url地址,获取HTML源码</p>
+<ul>
+  <li>
+    <p>还以<code>https://www.douban.com/photos/album/102879847/</code>这个相册地址为例.通过网址来把HTML源码解析出来很简单,首先引用<code>urllib2</code>库,然后打开,读取.</p>
+
+    <pre><code>  album_url = 'https://www.douban.com/photos/album/102879847/'
+  html = first_html = urllib2.urlopen(album_url).read()
+  print html 既然能获取到HTML源码,那剩下的就和上面的[通过本地HTML网页爬取图片](#markdown-通过本地HTML网页爬取图片)一样了.
+</code></pre>
+  </li>
+</ul>
+
+<p>####2. 翻页处理</p>
+<ul>
+  <li>当在豆瓣相册我翻页的时候留意了地址的变化.
+    <ul>
+      <li>第一页 <code>https://www.douban.com/photos/album/102879847/</code></li>
+      <li>第二页 <code>https://www.douban.com/photos/album/102879847/?start=18</code></li>
+      <li>第三页 <code>https://www.douban.com/photos/album/102879847/?start=36</code></li>
+      <li>第n页 <code>https://www.douban.com/photos/album/102879847/?start=18*(n-1)</code></li>
+    </ul>
+
+    <p>不难发现其中的规律,就是在原来的基础上加了<code>?start=x</code>,这个<code>x</code>为18的倍数,因为每一页至多有18张照片,那么第一页后面应该也是有的<code>?start=0</code>,只不过第一页作为缺省值直接隐藏掉了.</p>
+
+    <p>那这就好办了,先把思路理好.我们把有照片的页码相册地址都放到数组里<code>[album_1,album_2,album_3]</code>,然后遍历出每一个相册的地址,拿到相册地址,就能接着上面的继续做了.</p>
+  </li>
+  <li>
+    <p>分析每一页的源码<br />
+  上面有讲到,照片的url都在源码中的<code>&lt;div class="photolst clearfix"&gt;</code>和<code>&lt;div id="link-report"</code>之间.我们先假设从他们之间截取的字符串的值为<code>images</code>,那么如果一个相册只有三页,但是通过地址访问第四页的时候,<code>images</code>是什么呢?</p>
+
+    <p>比如我这个相册,<code>https://www.douban.com/photos/album/102879847/?start=54</code>,查看源码会发现<code>images</code>是:</p>
+
+    <pre><code>      '
+	
+	
+  &lt;/div&gt;
+	
+  '     那么去掉这个字符串中的空格,只需判断下`images`是否等于`&lt;/div&gt;`.假设相册url后面那个`?start=x`中的x默认是0,那么从0开始,只要`images`的值不等于`&lt;/div&gt;`就把这个的url加到数组中.
+
+  # -*- coding: utf-8 -*-
+  import re
+  import os
+  import requests
+  import urllib2
+	
+  album_url = 'https://www.douban.com/photos/album/102879847/'
+  html = urllib2.urlopen(album_url).read()
+  images = re.findall('"photolst clearfix"&gt;(.*?)&lt;div id="link-report',html,re.S)[0]
+	
+  index = 0
+  album_list = []	#初始化数组
+  while images != "&lt;/div&gt;":   #no photos
+      # 数据处理,把有照片的相册地址添加到数组中
+      temp_url = album_url + '?start=' + str(index * 18)
+      temp_html = urllib2.urlopen(temp_url).read()
+      temp_images = re.findall('"photolst clearfix"&gt;(.*?)&lt;div id="link-report',temp_html,re.S)[0]
+      #去空格
+      images = temp_images.strip()	
+      album_list.append(temp_url)
+      index += 1
+	    
+  # 移除最后一个多余元素    
+  album_list.pop()
+  print album_list	
+</code></pre>
+  </li>
+  <li>
+    <p>照片的相册地址都已经添加到数组里了,剩下的工作就是遍历这个数组,来下载所有的照片了.</p>
+
+    <pre><code>  if not os.path.exists('pic'):
+  j = 0
+  # 遍历相册地址url
+  for url in album_list:
+      html = urllib2.urlopen(url).read()
+      # match pics
+      large = re.findall('"photolst clearfix"&gt;(.*?)&lt;div id="link-report', html, re.S)[0]
+      pic_url = re.findall('img src="(.*?)" /', large)
+      j+=1
+      i = 0
+      # create folder
+      if not os.path.exists('pic'):
+          print '##开始下载.共' + str(imagesList.__len__() - 1) + '页##'
+          os.makedirs('pic')
+	
+      for url in pic_url:
+      # 之前下载的都是缩略图,如果想下载大图,那么把图片url中的`thumb`替换为`large`就行
+          largeImg_url = url.replace('thumb', 'large')
+          print '下载中...' + str(j) + '-' + str(i)
+          pic = requests.get(largeImg_url)
+          fp = open(os.getcwd() + '/pic/' + str(j) + '-' + str(i) + '.jpg', 'wb')
+          fp.write(pic.content)
+          fp.close()
+          i += 1
+          if i == pic_url.__len__():
+              print '##第' + str(j) + '页下载完毕!!##'
+  else:
+      print '已下载过了!'	
+</code></pre>
+  </li>
+  <li>至此,分页下载的功能也已经实现了.如果人性化一点,可以让用户输入,相册地址来实现下载,只需要把相册的url作为input的入参就行了.<br />
+<code>album_url = raw_input('请输入豆瓣相册地址:')</code></li>
+</ul>
+
+<p>###改换三方库
+这里我使用了<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html">Beautiful Soup</a>这个三方库,用法文档上写的很清楚了,这个库就是来替代正则截取HTML源码的工作,我们就不需要去找规律来截取想要的字段了,而是想要哪些内容,通过他的类名就可以获取诸如此类的人性化方法.</p>
+
+<p>更换后的代码全貌:</p>
+
+<pre><code># -*- coding: utf-8 -*-
+# __author__ = 'Heisenbean'
+import os
+import re
+import requests
+import urllib2
+from bs4 import BeautifulSoup
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+
+index = 0
+base_url = raw_input('请输入豆瓣相册地址:')
+url = base_url + '?start=0'
+html = urllib2.urlopen(url).read()
+
+#match pics
+imagesList = []
+soup = BeautifulSoup(html,'html.parser',from_encoding='utf-8')
+node = soup.find_all('div', {'class': 'photo_wrap'})
+
+while node:   #no photos
+    imagesList.append(url)
+    index += 1
+    url = base_url + '?start=' + str(index * 18)
+    html = urllib2.urlopen(url).read()
+    soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+    node = soup.find_all('div', {'class': 'photo_wrap'})
+
+if not os.path.exists('pic'):
+    j = 0
+    for url in imagesList:
+        html = urllib2.urlopen(url).read()
+        # init picsList
+        pic_url = []
+        soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+        node = soup.find_all('div', {'class': 'photo_wrap'})
+        for imageUrl in node:
+            for l in imageUrl.find_all('img'):
+                pic_url.append(l.get('src'))
+        j+=1
+        i = 0
+        # create folder
+        if not os.path.exists('pic'):
+            print '##开始下载.共' + str(imagesList.__len__() - 1) + '页##'
+            os.makedirs('pic')
+
+        for url in pic_url:
+            largeImg_url = url.replace('thumb', 'large')
+            print '下载中...' + str(j) + '-' + str(i)
+            pic = requests.get(largeImg_url)
+            fp = open(os.getcwd() + '/pic/' + str(j) + '-' + str(i) + '.jpg', 'wb')
+            fp.write(pic.content)
+            fp.close()
+            i += 1
+            if i == pic_url.__len__():
+                print '##第' + str(j) + '页下载完毕!!##'
+else:
+    print '已下载过了!'
+</code></pre>
+
+<p>这里我就过多来介绍这个库的使用了,整篇文章也没有引入特别深的Python技能,都是一些基础的知识,目的就是能够希望有更多的人可以使用Python,喜欢上Python.</p>
+
+<p>毕竟,<strong>人生苦短,_______</strong>.<br />
+最后,代码也放到<a href="https://github.com/Heisenbean/Spiders">Github</a>了,如果觉得文章对你有帮助,请给一个<strong>star</strong>.</p>
+
+  </section>
+</article>
+
+<section class="read-more">
+   
+   
+   
+   
+   <div class="read-more-item">
+       <span class="read-more-item-dim">更早的文章</span>
+       <h2 class="post-list__post-title post-title"><a href="/2013/10/bo-ke-gong-gao/" title="link to 博客公告">博客公告</a></h2>
+       <p class="excerpt">我没有写技术博客的习惯,以前也就是在新浪博客写一些生活琐事和个人感悟什么的.但是个人是比较喜欢写作的.也较喜欢给人分享东西,大学的时候和朋友搞了一个电影资源网站,那个时候做的风生水起,最高成就网站全世界排行八万左右,因为网站没有任何广告,纯提供高清的片源和字幕受大家喜欢.后来因为各方面的打压,再加上朋友们都忙于生计对网站疏于管理,现在就剩我一个人上去分享一些自己喜欢的电影给大家.这种坚持,一是乐于分享的精神,二是对电影的热爱.后来接触了一些技术大牛,看到他们把自己的技术分享出来,而且写的特...&hellip;</p>
+       <div class="post-list__meta"><time datetime="2013-10-20 11:29:08 +0800" class="post-list__meta--date date">2013-10-20</time> &#8226; <span class="post-list__meta--tags tags"></span><a class="btn-border-small" href=/2013/10/bo-ke-gong-gao/>继续阅读</a></div>
+   </div>
+   
+</section>
+
+<section class="post-comments">
+  
+    <div class="ds-thread" data-thread-key="/2014/06/doubanSpider/" data-title="手把手教你爬取豆瓣相册" data-url="http://heisenbean.me/2014/06/doubanSpider/"></div>
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"heisenbean"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+  
+  
+  
+  
+</section>
+
+
+            <section class="footer">
+    <footer>
+    	<span class="footer__copyright">本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></span>
+        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2016-11-26 生成，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 为本站提供稳定的 VPS 服务</span>
+        <span class="footer__copyright">本站由 <a href="http://heisenbean.me">@hedongbin</a> 创建，采用 <a href="https://github.com/onevcat/vno-jekyll">Vno - Jekyll</a> 作为主题，您可以在 GitHub 找到<a href="https://github.com/Heisenbean/vno-jekyll">本站源码</a> - &copy; 2016</span>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+
+    
+  </body>
+
+</html>

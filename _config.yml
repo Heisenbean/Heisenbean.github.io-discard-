@@ -1,0 +1,50 @@
+# Basic
+title: Kick Your Ass
+subtitle: 专业贴膜师,iOS/MacOS开发者,业余Python
+welcome_message: <a href="https://github.com/onevcat/vno-jekyll" target="_blank"></a>
+description: 是一个高尚的人，一个纯粹的人，一个有道德的人，一个坚决不脱离低级趣味的人。
+creator: <a href="http://heisenbean.me">@hedongbin</a>
+
+url: "http://heisenbean.me"
+
+permalink: /:year/:month/:title/
+
+# Format
+highlighter: plain
+
+# supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
+cover_color: 
+
+# The blog button should not be removed.
+blog_button:
+    title: Blog
+    description: Visit blog
+
+# Navigation buttons in the front page.
+# nav:
+    # - {title: Projects, description: My Projects, url: 'http://project.onevcat.com'}
+    # - {title: Another Button, description: A button, url: 'http://example.com'}
+
+# Pagination
+gems: [jekyll-paginate]
+paginate: 10
+paginate_path: "page/:num/"
+
+# Comment
+comment:
+    # disqus: hdbean
+    duoshuo: heisenbean
+    
+# Social
+social:
+    weibo: botheast
+    github: heisenbean
+    twitter: hedongbin
+#    gplus: 107108267983477358170
+    mail: heisenbean.me@gmail.com
+
+
+# Google Analytics
+ga:
+    # id: your_ga_id
+    # host: heisenbean.me
