@@ -27,7 +27,7 @@ Python版本:[2.7](https://www.python.org/downloads/)
 
 - 那我们要做的就是通过代码拿到所有的图片url,然后下载到电脑上.
 
-####2. 读取源码,获取图片url
+#### 2. 读取源码,获取图片url
 
 - 通过下面几句代码就能读取到源代码了.
 
@@ -79,7 +79,7 @@ Python版本:[2.7](https://www.python.org/downloads/)
 		pic_url = re.findall('img src="(.*?)" /',images)
 		print pic_url
 
-####3. 通过图片url下载图片
+#### 3. 通过图片url下载图片
 
 - 现在已经拿到所有图片的url,并且已经在一个数组里了,那剩下的就是遍历这个数组,把图片一个一个下载下来.
  
@@ -134,8 +134,8 @@ Python版本:[2.7](https://www.python.org/downloads/)
 > `os.getcwd`是获取当前路径,以及`makedirs`都是`os`库里的方法,要记得引用os库.
 
 至此,从静态html源代码爬取图片地址并下载算是已经做完了,接下来就直接通过网址来爬取图片.
-###通过网址动态爬取图片
-####1. 解析相url地址,获取HTML源码
+### 通过网址动态爬取图片
+#### 1. 解析相url地址,获取HTML源码
 - 还以`https://www.douban.com/photos/album/102879847/`这个相册地址为例.通过网址来把HTML源码解析出来很简单,首先引用`urllib2`库,然后打开,读取.
 
 		album_url = 'https://www.douban.com/photos/album/102879847/'
@@ -143,7 +143,7 @@ Python版本:[2.7](https://www.python.org/downloads/)
 		print html
 既然能获取到HTML源码,那剩下的就和上面的[通过本地HTML网页爬取图片](#markdown-通过本地HTML网页爬取图片)一样了.
 
-####2. 翻页处理
+#### 2. 翻页处理
 - 当在豆瓣相册我翻页的时候留意了地址的变化.
 	- 第一页 `https://www.douban.com/photos/album/102879847/`
 	- 第二页 `https://www.douban.com/photos/album/102879847/?start=18`
@@ -227,7 +227,7 @@ Python版本:[2.7](https://www.python.org/downloads/)
 - 至此,分页下载的功能也已经实现了.如果人性化一点,可以让用户输入,相册地址来实现下载,只需要把相册的url作为input的入参就行了.  
 `album_url = raw_input('请输入豆瓣相册地址:')`
 
-###改换三方库
+### 改换三方库
 这里我使用了[Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html)这个三方库,用法文档上写的很清楚了,这个库就是来替代正则截取HTML源码的工作,我们就不需要去找规律来截取想要的字段了,而是想要哪些内容,通过他的类名就可以获取诸如此类的人性化方法.
   
 更换后的代码全貌:
