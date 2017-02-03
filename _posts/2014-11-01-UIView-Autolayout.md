@@ -1,10 +1,18 @@
+---
+layout: post
+title:  "UIView-Autolayout的简单使用
+"
+date:   2014-11-01 11:29:08 +0800
+categories: iOS
+---
+
 iPhone6和iPhone6 plus问世之后,iOS开发的屏幕适配就又稍微麻烦了一些,但是如果能熟练使用Autolayout的话,屏幕适配也不是什么难事.  
 
-众所周知的Autolayout可以在storyboard里通过添加约束来实现,这样是比较简单的.如果用代码的话,是比较麻烦的,包括用VLF语言开发效率也不是很高.  
+众所周知的Autolayout可以在storyboard里通过添加约束来实现,这样是比较简单的.如果用代码的话,是比较麻烦的,包括用[VLF](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html)语言开发效率也不是很高.  
 
 那么这里给大家推荐一个非常轻量级的三方框架,准确来说也不算是一个框架,它是给UIView添加一个分类,使用起来非常简单.
 
-这里先贴出github地址:https://github.com/jrturton/UIView-Autolayout
+这里先贴出github地址:[https://github.com/jrturton/UIView-Autolayout](https://github.com/smileyborg/UIView-AutoLayout)
 
 > 后来作者放弃了这个库,新开发了一个叫[Purelayout](https://github.com/PureLayout/PureLayout)的库,用法基本一致
 
@@ -94,12 +102,12 @@ sample code:
 ###方法介绍:
 
 1. `autoSetDimensionsToSize`,这个方法是给控件添加size约束,相当于sb里的Pin中的宽度高度选项.  
-**图片**
+![](http://oclnty4pg.bkt.clouddn.com/150003247613990.png)
 
 	同等于`[_grayView autoSetDimensionsToSize:CGSizeMake(46, 30)];`  
 
 2. autoAlignAxisToSuperviewAxis,这个方法是约束控件在它父控件中的方向,比如是垂直居中还是水平居中.相当于sb里的Align中让控件水平或者垂直居中.  
-**图片**   
+![](http://oclnty4pg.bkt.clouddn.com/150013551837692.png)   
 同等于  
 
 		[_grayView autoAlignAxisToSuperviewAxis:ALAxisVertical];
@@ -107,8 +115,9 @@ sample code:
 
 
 3. autoPinEdge,这个方法相当于sb中Pin里面给添加控件距其他控件的距离,可以是控件的父控件,也可以是和他相邻的其他控件.  
-**图片**   
-同等于  
+![](http://oclnty4pg.bkt.clouddn.com/150024528087218.png) 
+   
+	同等于  
 
 		[_grayView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(72, 22, 28.5, 245)];
 		
@@ -134,6 +143,9 @@ sample code:
 	    [_purpleView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_redView withOffset:20];
 	    
 	效果如下:  
-	**图片**
+
+	![](http://oclnty4pg.bkt.clouddn.com/161147377671051.jpg)
+
+
 	
 	
