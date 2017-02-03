@@ -99,7 +99,7 @@ sample code:
 	@end
 	
 	
-###方法介绍:
+### 方法介绍:
 
 1. `autoSetDimensionsToSize`,这个方法是给控件添加size约束,相当于sb里的Pin中的宽度高度选项.  
 ![](http://oclnty4pg.bkt.clouddn.com/150003247613990.png)
