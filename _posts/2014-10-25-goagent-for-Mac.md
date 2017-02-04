@@ -42,12 +42,14 @@ goagent在github上也有很详细的介绍以及goagent的部署方法,但是�
 - 这里除了需要goagent的源文件意外,还需要一个GoagentMac.app文件中的一个info.plist文件.
 
 - goagent的源文件,在它的github上也有下载,也是最新版本,但是我自己用github上的最新版本,不能向服务器上传数据,所以这里,还是用我之前的老版本. 为了方便,已经传[度盘](https://pan.baidu.com/s/1mgA5VuS),密码:qx2a  
-- goagent的部署步骤:
-	##### 本地端(local)的部署:  
-	- 进入到goagent的local目录,打开proxy.ini文件,要用文本编辑器打开,然后修改appid为自己之前申请的那个appid,把yourAppID换成你之前申请的.修改完之后保存退出,密码可以不用写.  
-![](http://oclnty4pg.bkt.clouddn.com/agent-1.png)
+- goagent的部署步骤:  
 
-	##### 服务器端(server)部署:  
+	**本地端(local)的部署:**  
+	- 进入到goagent的local目录,打开proxy.ini文件,要用文本编辑器打开,然后修改appid为自己之前申请的那个appid,把yourAppID换成你之前申请的.修改完之后保存退出,密码可以不用写.  
+![](http://oclnty4pg.bkt.clouddn.com/agent-1.png)  
+![](http://oclnty4pg.bkt.clouddn.com/080217502128332.png)
+
+	**服务器端(server)部署:**  
 	
 	- 下载好后的goagent放到桌面或者其他地方,打开之后进入到server目录,然后打开终端,在终端输入python,然后敲下空格,然后把uploader.zip拖入到终端里,最后回车.如下图   
 ![](http://oclnty4pg.bkt.clouddn.com/agent-2.gif)
@@ -55,15 +57,11 @@ goagent在github上也有很详细的介绍以及goagent的部署方法,但是�
 	- 上传数据的时候会让你填appid,邮箱和密码,填写密码的时候要小心一点,因为你输入密码的时候是不显示输入了多少个的,所以要小心写,不要写错了.
 	- 最后如果看到英文的上传成功的提示,说明服务器配置完成.
 
- 	- 设置代理启动路径,这时就用到了GoagentMac.app,为了方便,也传到了[度盘](https://pan.baidu.com/s/1i3mVydv),密码:9pxf
-
-	- 把下载好的GoagentMac.app解压缩到桌面后拖到"应用程序"里
-
+ 	- 设置代理启动路径,这时就用到了GoagentMac.app,为了方便,也传到了[度盘](https://pan.baidu.com/s/1i3mVydv),密码:9pxf  
+	- 把下载好的GoagentMac.app解压缩到桌面后拖到"应用程序"里  
 	- 右键点击,打开"显示包内容",在"Contents"文件里找到info.plist,修改proxy.py的路径,其实就是GoAgentPath的路径.
-
-	- proxy.py存放在/goagent/local中,如果是按我之前的步骤做的,那么proxy.py的路径就是/Users/Mac/Desktop/goagent/local/proxy.py,把红框中的地址改成自己proxy.py的路径
-
-	- 要查看自己的proxy.py路径,可以直接把这个文件拖到终端中查看,为了桌面简洁,也建议把goagent文件夹拖到"应用程序"中,之前把GoagentMac.app拖到"应用程　　　　　序"里也是为了桌面简洁,全是个人喜好,如果把goagent文件夹拖到"应用程序"中的话,那info.plist中的proxy.py路径也就是下图红框中的内容就不用改了.  
+	- proxy.py存放在/goagent/local中,如果是按我之前的步骤做的,那么proxy.py的路径就是/Users/Mac/Desktop/goagent/local/proxy.py,把红框中的地址改成自己proxy.py的路径  
+	- 要查看自己的proxy.py路径,可以直接把这个文件拖到终端中查看,为了桌面简洁,也建议把goagent文件夹拖到"应用程序"中,之前把GoagentMac.app拖到"应用程序"里也是为了桌面简洁,全是个人喜好,如果把goagent文件夹拖到"应用程序"中的话,那info.plist中的proxy.py路径也就是下图红框中的内容就不用改了.  
 	![](http://oclnty4pg.bkt.clouddn.com/agent3-1.png)
  
 
@@ -99,13 +97,14 @@ goagent在github上也有很详细的介绍以及goagent的部署方法,但是�
 
 - 保存配置  
 
-	![](http://oclnty4pg.bkt.clouddn.com/agent3.png)
+	![](http://oclnty4pg.bkt.clouddn.com/agent-3.png)
+
 
 
 #### 6.打开proxy.py,开启代理
 - 在/goagent/local目录中找到proxy.py文件,右键点击选择其他方式打开,选择使用终端打开,并且把"始终以此方式打开"的勾给选上,打开proxy.py之后就算开启了代理,状态入下图.建议这个时候把proxy.py文件制作一个替身放到桌面,这样以后再开代理直接双击桌面上的proxy.py的替身就行了.  
 
-　　![](http://oclnty4pg.bkt.clouddn.com/agent4.png)
+　　![](http://oclnty4pg.bkt.clouddn.com/agent-4.png)
 　
 
 - 打开chrome,点击右上角的小地球,选择"自动切换模式",这样SwitchSharp就会自动帮你切换代理,比如说你上一些国内不需要代理的网站,SwitchSharp就不会开启代理,因为如果用代理上国内的网站是有些卡的,如果你要上一些需要翻墙的网站,他就会帮你自动挂代理.不过有些时候它也不是100%智能,有些需要翻墙的网站它没有帮你挂代理,就需要你自己手动开启代理,比如说你上了一个xxx.com的网站,页面打不开,这个时候你就需要手动开启代理:点击"小地球",然后点击"新建规则"下面的xxx.com这个网址,选择连接方式为"goagent".
@@ -113,7 +112,7 @@ goagent在github上也有很详细的介绍以及goagent的部署方法,但是�
 - 到此为止,代理就做好了.
 
  
-	![](http://oclnty4pg.bkt.clouddn.com/agent5.png)
+	![](http://oclnty4pg.bkt.clouddn.com/agent-5.png)
 
 
 
