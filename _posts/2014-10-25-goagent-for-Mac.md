@@ -17,7 +17,7 @@ FQ=fanqiang
 
 goagent在github上也有很详细的介绍以及goagent的部署方法,但是在Mac下的方法不是很详细,而且这些天github不翻墙的情况下,访问非常不稳定,所以这里我就借花献佛给大家讲一下Mac下goagent在chrome上的部署方法.
 
-那么废话少说,直接上教程.
+### 那么废话少说,直接上教程.
 
 #### 1.Google Chrome
 
@@ -45,6 +45,7 @@ goagent在github上也有很详细的介绍以及goagent的部署方法,但是�
 - goagent的部署步骤:  
 
 	**本地端(local)的部署:**  
+	
 	- 进入到goagent的local目录,打开proxy.ini文件,要用文本编辑器打开,然后修改appid为自己之前申请的那个appid,把yourAppID换成你之前申请的.修改完之后保存退出,密码可以不用写.  
 ![](http://oclnty4pg.bkt.clouddn.com/agent-1.png)  
 ![](http://oclnty4pg.bkt.clouddn.com/080217502128332.png)
@@ -53,11 +54,10 @@ goagent在github上也有很详细的介绍以及goagent的部署方法,但是�
 	
 	- 下载好后的goagent放到桌面或者其他地方,打开之后进入到server目录,然后打开终端,在终端输入python,然后敲下空格,然后把uploader.zip拖入到终端里,最后回车.如下图   
 ![](http://oclnty4pg.bkt.clouddn.com/agent-2.gif)
-		
+
 	- 上传数据的时候会让你填appid,邮箱和密码,填写密码的时候要小心一点,因为你输入密码的时候是不显示输入了多少个的,所以要小心写,不要写错了.
 	- 最后如果看到英文的上传成功的提示,说明服务器配置完成.
-
- 	- 设置代理启动路径,这时就用到了GoagentMac.app,为了方便,也传到了[度盘](https://pan.baidu.com/s/1i3mVydv),密码:9pxf  
+	- 设置代理启动路径,这时就用到了GoagentMac.app,为了方便,也传到了[度盘](https://pan.baidu.com/s/1i3mVydv),密码:9pxf  
 	- 把下载好的GoagentMac.app解压缩到桌面后拖到"应用程序"里  
 	- 右键点击,打开"显示包内容",在"Contents"文件里找到info.plist,修改proxy.py的路径,其实就是GoAgentPath的路径.
 	- proxy.py存放在/goagent/local中,如果是按我之前的步骤做的,那么proxy.py的路径就是/Users/Mac/Desktop/goagent/local/proxy.py,把红框中的地址改成自己proxy.py的路径  
