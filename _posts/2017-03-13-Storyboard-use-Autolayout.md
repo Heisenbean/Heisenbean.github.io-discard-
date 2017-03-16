@@ -9,15 +9,15 @@ categories: iOS
 ### 前言:
 Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也会分两种.就是通过代码来布局还是Storyboard来布局?Autolayout刚出那会我是前者,而且使用[UIView-Autolayout](https://github.com/smileyborg/UIView-AutoLayout)这个库来布局.  
 
-但是后来我发现这样布局,并不能直观的看到自己写的约束是什么样子,只能运行一下来看,而且代码量也比较高.后来通过研究学习了在Storyboard中使用AutoLayout,再配合`User Defined Runtime Attributes`真的是太爽了.个人觉得是提高了开发效率,而且修改也很容易.  
+但是后来我发现这样布局,并不能直观的看到自己写的约束是什么样子,只能运行一下来看,代码量也比较多.后来通过研究学习了在Storyboard中使用AutoLayout,再配合`User Defined Runtime Attributes`真的是太爽了.个人觉得提高了开发效率.  
 
 有人说项目使用了Git管理,再使用Storyboard的话,其他同事只要点进去Storyboard文件,这个Storyboard就会被标记已修改,其实如果使用好Git的话,都在自己分支下工作,是不会出现这种情况的.如果真的出现了,那选中Storyboard右键点击选择`Source Control`,然后Discard一下就行了.
 
 还有就是在较大型项目中可能会影响编译运行效率,因为Storyboard有一个转化为xml文件的过程,这个也只是理论上的猜测,我也没有实际去测试.
 
-但不管怎样,我个人觉得用Storyboard毕竟爽,这篇文章也不是讨论是Storyboard布局好还是代码布局好的,只是交大家如何在Storyboard中使用Autolayout.
+但不管怎样,我个人觉得用Storyboard比较爽,这篇文章也不是讨论是Storyboard布局好还是代码布局好的,只是教大家如何在Storyboard中使用Autolayout.
 
-新接手的项目中用Storyboard很多,并且使用了Autolayout的同学,可能一看到这么多线会一脸懵逼.WTF?这都什么东西?  
+没用过这种方法布局,但接收的项目中用Storyboard很多,并且使用了Autolayout的同学,可能一看到这么多线会一脸懵逼.WTF?这都什么东西?  
 ![](http://oclnty4pg.bkt.clouddn.com/wtf.png)
 
 那么下面,我将带领大家来看看Storyboard+Autolayout到底是个什么东西.
@@ -51,15 +51,15 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 	UILabel比较特殊,添加两个约束就可以了,一般添加居上和居左就可以了,因为没有添加居右的约束,所以就要控制Label的宽度.  
 	iOS6之后UILabel增加了一个`preferredMaxLayoutWidth`属性,这个属性就可以控制Label的宽度,但是要想这个属性起作用,`UILabel`的`numberOfLines`属性必须≥1.所以如果没有行高限制的需求,直接把`numberOfLines`设为0就行.Storyboard里可以设置Label的`preferredMaxLayoutWidth`属性,但是写死肯定是不行,不同尺寸屏幕适配会有问题,所以需要使用代码动态来设置这个值.但如果这个Label的宽度如果本身就是设计的很短那就另当别论了.  
 至于怎么动态设置Label的`preferredMaxLayoutWidth`等到自定义UITableViewCell再讲.    
-	![](http://oclnty4pg.bkt.clouddn.com/shot9.png)    
-	![](http://oclnty4pg.bkt.clouddn.com/shot5.png)
+	![](http://oclnty4pg.bkt.clouddn.com/shot9.png?imageView3/w/750)    
+	![](http://oclnty4pg.bkt.clouddn.com/shot5.png?imageView3/w/750)
 3. 在TableViewCell继续添加UILabel作为内容控件并添加约束.  
 	这个Label可以让他和之前添加的标题Label产生关系,就是让它和标题Label左对齐,这样做的好处是标题居左的约束如果改变,这个Label也会跟着改变.然后再给它添加一个居标题Label的约束.当然这个Label也要设置`preferredMaxLayoutWidth`属性.
 	> 按**shit键**可以选中多个控件  
 	
-	![](http://oclnty4pg.bkt.clouddn.com/shot8.gif)
+	![](http://oclnty4pg.bkt.clouddn.com/shot8.gif?imageView3/w/750)
 4. 设置TableView的代理和数据源为视图控制器(View Controller).这个操作等同于在代码里实现.    
-	![](http://oclnty4pg.bkt.clouddn.com/shot10.png)
+	![](http://oclnty4pg.bkt.clouddn.com/shot10.png?imageView3/w/750)
 
 		self.tableView.delegate = self;
 	  	self.tableView.dataSource = self;
@@ -127,6 +127,7 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 		@property (weak, nonatomic) IBOutlet UILabel *myTitle;
 		@property (weak, nonatomic) IBOutlet UILabel *myContent;
 		@end
+		
 进入`MyTableViewCell.m`文件中设置Label的preferredMaxLayoutWidth.
 
 		- (void)awakeFromNib {
@@ -151,8 +152,9 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 			</dict>
 		</array>
 		</plist> 		
-![](http://oclnty4pg.bkt.clouddn.com/shot13.png)  
-在自定义Cell的`.h`文件中声明一个字典类型的属性,因为我们数据数组里放的是字典.
+		
+	![](http://oclnty4pg.bkt.clouddn.com/shot13.png)  
+	在自定义Cell的`.h`文件中声明一个字典类型的属性,因为我们数据数组里放的是字典.
 
 		@interface MyTableViewCell : UITableViewCell
 		@property (weak, nonatomic) IBOutlet UILabel *myTitle;
