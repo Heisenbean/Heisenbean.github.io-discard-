@@ -47,26 +47,28 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 2. 添加UITableViewCell,并设置其可重用标识符(Identifier).  
 	![](http://oclnty4pg.bkt.clouddn.com/shot11.png)  
 	
-2. 在UITableViewCell里添加UILabel作为标题控件并添加约束.
+3. 在UITableViewCell里添加UILabel作为标题控件并添加约束.
 	UILabel比较特殊,添加两个约束就可以了,一般添加居上和居左就可以了,因为没有添加居右的约束,所以就要控制Label的宽度.  
 	iOS6之后UILabel增加了一个`preferredMaxLayoutWidth`属性,这个属性就可以控制Label的宽度,但是要想这个属性起作用,`UILabel`的`numberOfLines`属性必须≥1.所以如果没有行高限制的需求,直接把`numberOfLines`设为0就行.Storyboard里可以设置Label的`preferredMaxLayoutWidth`属性,但是写死肯定是不行,不同尺寸屏幕适配会有问题,所以需要使用代码动态来设置这个值.但如果这个Label的宽度如果本身就是设计的很短那就另当别论了.  
 至于怎么动态设置Label的`preferredMaxLayoutWidth`等到自定义UITableViewCell再讲.    
 	![](http://oclnty4pg.bkt.clouddn.com/shot9.png?imageView3/w/750)    
 	![](http://oclnty4pg.bkt.clouddn.com/shot5.png?imageView3/w/750)
-3. 在TableViewCell继续添加UILabel作为内容控件并添加约束.  
+4. 在TableViewCell继续添加UILabel作为内容控件并添加约束.  
 	这个Label可以让他和之前添加的标题Label产生关系,就是让它和标题Label左对齐,这样做的好处是标题居左的约束如果改变,这个Label也会跟着改变.然后再给它添加一个居标题Label的约束.当然这个Label也要设置`preferredMaxLayoutWidth`属性.
 	> 按**shit键**可以选中多个控件  
 	
 	![](http://oclnty4pg.bkt.clouddn.com/shot8.gif?imageView3/w/750)
-4. 设置TableView的代理和数据源为视图控制器(View Controller).这个操作等同于在代码里实现.    
+5. 设置TableView的代理和数据源为视图控制器(View Controller).这个操作等同于在代码里实现.    
 	![](http://oclnty4pg.bkt.clouddn.com/shot10.png?imageView3/w/750)
 
 		self.tableView.delegate = self;
 	  	self.tableView.dataSource = self;
-	然后把TableView拖线到ViewController中.  
+	  	
+	然后把TableView拖线到ViewController中.    
+	
 	`@property (weak, nonatomic) IBOutlet UITableView *tableView;`
 	
-5. 实现TableView的数据源和代理.
+6. 实现TableView的数据源和代理.
 
 		#import "ViewController.h"
 		@interface ViewController () <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -119,7 +121,7 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 
  
 
-6. 自定义<a name="UITableViewCell">UITableViewCell</a>,新建一个基于UITableViewCell类,我这里取名为`MyTableViewCell`.然后返回到`Main.`里,把的UITableViewCell的的类继承改为刚新建的类.  
+7. 自定义<a name="UITableViewCell">UITableViewCell</a>,新建一个基于UITableViewCell类,我这里取名为`MyTableViewCell`.然后返回到`Main.`里,把的UITableViewCell的的类继承改为刚新建的类.  
 ![](http://oclnty4pg.bkt.clouddn.com/shot12.png)  
 接着把`Main.storyboard`中UITableViewCell中的控件都拖到自定义的Cell里.
 
@@ -128,13 +130,14 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 		@property (weak, nonatomic) IBOutlet UILabel *myContent;
 		@end
 		
-进入`MyTableViewCell.m`文件中设置Label的preferredMaxLayoutWidth.
+	进入`MyTableViewCell.m`文件中设置Label的preferredMaxLayoutWidth.
 
 		- (void)awakeFromNib {
 		    [super awakeFromNib];
 		    _myTitle.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 20;
 		    _myContent.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 20;
 		}
+	
 		
 8. 给Cell里的控件赋值,第六步我已经写出了加载数据的方法,是通过加载plist文件里的假数据.
 自己可以新建一个plist文件.
@@ -375,5 +378,7 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 	
 	![](http://oclnty4pg.bkt.clouddn.com/shot19.gif)	
 	
+源码:	[https://github.com/Heisenbean/BlogDemos](https://github.com/Heisenbean/BlogDemos)  
+
 其中UITableViewCell中添加UICollectionView参考了下面这篇文章:  
 [https://ashfurrow.com/blog/putting-a-uicollectionview-in-a-uitableviewcell/](https://ashfurrow.com/blog/putting-a-uicollectionview-in-a-uitableviewcell/)	
