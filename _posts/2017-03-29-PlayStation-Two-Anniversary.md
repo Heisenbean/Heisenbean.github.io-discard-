@@ -11,12 +11,14 @@ categories: others
 ## 前言  
 一直喜欢单机游戏,高中大学的时候玩了很多,比如大名鼎鼎的<刺客信条>系列,<波斯王子>系列,<细胞分裂>系列等等,甚至还有一些不为人知的冷门游戏.  
 那个时候没钱买主机,只能从三大妈下盗版的玩,真是罪过.后来毕业工作了就开始在Steam上买一些游戏来玩,但是主机独占的游戏只能看视频通关,于是为了弥补这一点遗憾,去年让朋友在美亚帮我买了一个PS4 Slim版的,捆绑的<神秘海域4>.  
+
 [PlayStation 4 Slim 500GB Console - Uncharted 4 Bundle](https://www.amazon.com/PlayStation-Slim-500GB-Console-Uncharted-Bundle/dp/B01LRLJV28/ref=sr_1_1?ie=UTF8&qid=1491374264&sr=8-1&keywords=PS4&th=1)  
+  
 顺便也随手买了一台[显示器](https://item.jd.com/1453819.html),2K的.  
 玩了<神海4>后,我只能说是震撼.于是又买了<战神3>,<美国末日>,<神海合集1-3>等等,算是入了坑.
-这里安利一下我最爱的<刺客信条>系列,艾吉奥三部曲是必玩的,其他的可玩可不玩.具体可参看我做的表格,豆瓣评分还是可以的,IGN的评分真是一坨屎啊.     
+这里安利一下我最爱的<刺客信条>系列,艾吉奥三部曲是必玩的,其他的可玩可不玩.具体可参看我做的[表格](http://oclnty4pg.bkt.clouddn.com/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1.pdf),豆瓣评分还是可以的,IGN的评分真是一坨屎啊.     
 
-<img src="http://oclnty4pg.bkt.clouddn.com/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1.pdf">
+![](http://oclnty4pg.bkt.clouddn.com/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1-1.png)
 
 ## PlayStation®Plus  
 成为国服PSN会员其实是凑巧了,因为当时朋友告诉我最近有活动买12个月PSN会员送3个月,于是我就立马去买了,买完之后发现买的是国服PSN会员.😂  
