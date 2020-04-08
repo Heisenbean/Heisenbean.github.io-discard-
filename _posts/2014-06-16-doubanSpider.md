@@ -2,7 +2,7 @@
 layout: post
 title:  "手把手教你爬取豆瓣相册"
 date:   2014-06-16 11:29:08 +0800
-categories: Python
+tags: Python
 ---
 
 Python版本:[2.7](https://www.python.org/downloads/)  
@@ -139,8 +139,9 @@ Python版本:[2.7](https://www.python.org/downloads/)
 - 还以`https://www.douban.com/photos/album/102879847/`这个相册地址为例.通过网址来把HTML源码解析出来很简单,首先引用`urllib2`库,然后打开,读取.
 
 		album_url = 'https://www.douban.com/photos/album/102879847/'
-		html = first_html = urllib2.urlopen(album_url).read()
+		html = urllib2.urlopen(album_url).read()
 		print html
+		
 既然能获取到HTML源码,那剩下的就和上面的[通过本地HTML网页爬取图片](#markdown-通过本地HTML网页爬取图片)一样了.
 
 #### 2. 翻页处理

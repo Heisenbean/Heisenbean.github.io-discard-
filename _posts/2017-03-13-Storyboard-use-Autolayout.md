@@ -3,7 +3,7 @@ layout: post
 title:  "在Storyboard中使用Autolayout
 "
 date:   2017-03-13 21:15:08 +0800
-categories: iOS
+tags: iOS
 ---
 
 ### 前言:
@@ -59,10 +59,11 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 	
 	![](http://oclnty4pg.bkt.clouddn.com/shot8.gif?imageView3/w/750)
 5. 设置TableView的代理和数据源为视图控制器(View Controller).这个操作等同于在代码里实现.    
+
 	![](http://oclnty4pg.bkt.clouddn.com/shot10.png?imageView3/w/750)
 
 		self.tableView.delegate = self;
-	  	self.tableView.dataSource = self;
+		self.tableView.dataSource = self;
 	  	
 	然后把TableView拖线到ViewController中.    
 	
@@ -113,6 +114,7 @@ Autolayout出了这么多年,普及率已经很高了,但是Autolayout大概也�
 		- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 		    return 44;	
 		}
+		
 	目前的问题有三个:
 	
 	- 尚未自定义Cell

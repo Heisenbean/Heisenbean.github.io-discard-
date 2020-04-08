@@ -3,7 +3,7 @@ layout: post
 title:  "UIView-Autolayout的简单使用
 "
 date:   2014-11-01 11:29:08 +0800
-categories: iOS
+tags: iOS
 ---
 
 iPhone6和iPhone6 plus问世之后,iOS开发的屏幕适配就又稍微麻烦了一些,但是如果能熟练使用Autolayout的话,屏幕适配也不是什么难事.  

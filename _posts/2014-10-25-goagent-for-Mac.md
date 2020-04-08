@@ -2,7 +2,7 @@
 layout: post
 title:  "Mac下利用goagent代理教程"
 date:   2014-10-25 00:34:08 +0800
-categories: Mac
+tags: Mac
 ---
 
 FQ=fanqiang

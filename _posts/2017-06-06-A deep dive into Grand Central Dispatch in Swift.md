@@ -2,11 +2,11 @@
 layout: post
 title:  "[译]深入研究GCD在Swift中的用法"
 date:   2017-06-06 17:46:00 +0800
-categories: Swift
+tags: Swift
 ---
 
 
-原作者: John Sundell
+原作者: John Sundell  
 原文地址: [https://www.swiftbysundell.com/posts/a-deep-dive-into-grand-central-dispatch-in-swift](https://www.swiftbysundell.com/posts/a-deep-dive-into-grand-central-dispatch-in-swift)    
 翻译: [何东彬](https://github.com/Heisenbean)  
 校对: 韩晔
@@ -21,11 +21,11 @@ categories: Swift
 
 ### 使用DispatchWorkItem进行可取消任务的延迟工作  
 
-关于GCD最常见的误解是"一旦你安排了一个任务就无法取消,需要操作Operation的API来取消任务".这一看法在以前是对的,但在iOS 8和macOS 10.10中DispatchWorkItem被引入之后情况就不一样了,因为它提供了针对解决这一问题的功能,使得使用API非常简便.  
+关于GCD最常见的误解是"一旦你安排了一个任务就无法取消,需要操作`Operation`的API来取消任务".这一看法在以前是对的,但在iOS 8和macOS 10.10中`DispatchWorkItem`被引入之后情况就不一样了,因为它提供了针对解决这一问题的功能,使得使用API非常简便.  
 
 假设我们的界面有个搜索框,当用户输入一个字符,我们通过调用后台接口来进行搜索.用户可以很快地打字,在这种情况下我们不能因为有一个字符输入就请求网络(这样会浪费大量的数据和服务器容量),实际上我们想要"防反跳"这些事件,如果用户0.25秒内没有进行输入就执行一次请求.  
 
-这种情况下,`DispatchWorkItem`就会起作用.通过将我们的请求代码封装在work item中,我们就可以在一个新的请求进入时非常容易地取消它,就像这样:
+这种情况下,`DispatchWorkItem`就会起作用.通过将我们的请求代码封装在`work item`中,我们就可以在一个新的请求进入时非常容易地取消它,就像这样:
 
     class SearchViewController: UIViewController, UISearchBarDelegate {
     // We keep track of the pending work item as a property
@@ -51,7 +51,7 @@ categories: Swift
 
 ### 使用DispatchGroup进行分组或者链接任务  
 
-有时候要走通逻辑,你需要执行一个组任务.比如你在创建模型之前需要先从一组数据源中加载数据.通过使用DispatchGroup，你不必一直关注数据源动向就可以轻松地进行同步工作.  
+有时候要走通逻辑,你需要执行一个组任务.比如你在创建模型之前需要先从一组数据源中加载数据.通过使用`DispatchGroup`，你不必一直关注数据源动向就可以轻松地进行同步工作.  
 
 使用`dispatch groups`还有一个很大的优势,那就是你的任务可以并发运行在单独的队列中.这样你就可以有一个更简洁的开端，而且在有需要的情况下不必重写任何任务就能轻松地添加并发任务.你所需要做的就是在`dispatch group`中平衡调用`enter()`和`leave()`来同步你的任务
 
@@ -90,7 +90,7 @@ categories: Swift
         self?.render(collection)
     }
 
-上面的代码可以运行,但是重复率太高.如果`Element`符合数据源，我们就可以给`Array`写个`extension`来重构下代码:   
+上面的代码可以运行,但是重复率太高.如果`Element`符合数据源，我们就可以给`Array`写个扩展来重构下代码:   
 
     extension Array where Element: DataSource {
         func load(completionHandler: @escaping (NoteCollection) -> Void) {
